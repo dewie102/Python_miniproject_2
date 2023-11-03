@@ -1,0 +1,58 @@
+{
+    "Hall": {
+      "direction": {
+        "south": "Kitchen",
+        "east": "Dining Room"
+      },
+      "items": [
+        {
+          "key": {
+            "hidden": false
+          }
+        },
+        {
+          "sword": {
+            "hidden": true,
+            "location": "rug"
+          }
+        }
+      ]
+    },
+    "Kitchen": {
+      "direction": {
+        "north": "Hall"
+      },
+      "items": [
+        {
+          "monster": {}
+        }
+      ]
+    },
+    "Dining Room": {
+      "direction": {
+        "west": "Hall",
+        "south": "Garden",
+        "north": "Pantry"
+      },
+      "items": [
+        {
+          "potion": {}
+        }
+      ]
+    },
+    "Garden": {
+      "direction": {
+        "north": "Dining Room"
+      }
+    },
+    "Pantry": {
+      "direction": {
+        "south": "Dining Room"
+      },
+      "items": [
+        {
+          "cookie": {}
+        }
+      ]
+    }
+  }
