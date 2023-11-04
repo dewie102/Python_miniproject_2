@@ -1,58 +1,58 @@
 {
-    "Hall": {
-      "direction": {
-        "south": "Kitchen",
-        "east": "Dining Room"
-      },
-      "items": [
-        {
-          "key": {
-            "hidden": false
-          }
-        },
-        {
-          "sword": {
-            "hidden": true,
-            "location": "rug"
-          }
-        }
-      ]
+  "Hall": {
+    "direction": {
+      "south": "Kitchen",
+      "east": "Dining Room"
     },
-    "Kitchen": {
-      "direction": {
-        "north": "Hall"
-      },
-      "items": [
-        {
-          "monster": {}
+    "items": [
+      {
+        "key": {
+          "hidden": false
         }
-      ]
-    },
-    "Dining Room": {
-      "direction": {
-        "west": "Hall",
-        "south": "Garden",
-        "north": "Pantry"
       },
-      "items": [
-        {
-          "potion": {}
+      {
+        "sword": {
+          "hidden": true,
+          "location": "rug"
         }
-      ]
-    },
-    "Garden": {
-      "direction": {
-        "north": "Dining Room"
       }
+    ]
+  },
+  "Kitchen": {
+    "direction": {
+      "north": "Hall"
     },
-    "Pantry": {
-      "direction": {
-        "south": "Dining Room"
-      },
-      "items": [
-        {
-          "cookie": {}
-        }
-      ]
+    "enemy": [
+      {
+        "monster": {}
+      }
+    ]
+  },
+  "Dining Room": {
+    "direction": {
+      "west": "Hall",
+      "south": "Garden",
+      "north": "Pantry"
+    },
+    "items": [
+      {
+        "potion": {}
+      }
+    ]
+  },
+  "Garden": {
+    "direction": {
+      "north": "Dining Room"
     }
+  },
+  "Pantry": {
+    "direction": {
+      "south": "Dining Room"
+    },
+    "items": [
+      {
+        "cookie": {}
+      }
+    ]
   }
+}

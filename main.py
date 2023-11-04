@@ -1,3 +1,4 @@
+"""RPG Text Adventure Main module"""
 #!/usr/bin/env python3
 
 # Replace RPG starter project with this code when new instructions are live
@@ -27,7 +28,7 @@ def showStatus():
 inventory = []
 
 # A dictionary linking a room to other rooms
-#rooms = 
+rooms = {}
 
 #start the player in the Hall
 currentRoom = 'Hall'
