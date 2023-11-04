@@ -6,3 +6,9 @@ class Item:
         self.name = ""
         self.hidden = False
         self.location = ""
+
+    def __repr__(self):
+        return f"Item:\n\tname: {self.name}\n\tlocation: {self.location}\n\thidden: {self.hidden}"
+
+    def __str__(self):
+        return f"Item:\n\tname: {self.name}\n\tlocation: {self.location}\n\thidden: {self.hidden}"

@@ -24,7 +24,9 @@
     },
     "enemy": [
       {
-        "monster": {}
+        "monster": {
+          "type": "monster"
+        }
       }
     ]
   },
