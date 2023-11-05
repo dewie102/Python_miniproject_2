@@ -78,6 +78,8 @@ def load_quests(level_number: int) -> dict[str, Quest]:
                 tasks: list[Task] = process_tasks(quest[1].get("tasks", []))
                 quest_obj.tasks = tasks
 
+
+                quest_obj.set_number_of_necessary_tasks()
                 quests.update({quest[0]: quest_obj})
     except OSError as ex:
         print(f"Something went wrong with opening the file:\n{ex}")

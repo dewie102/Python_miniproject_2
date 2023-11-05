@@ -11,7 +11,19 @@ class Room:
         self.enemies = {}
 
     def __repr__(self):
-        return f"Room:\n\tname: {self.name}\n\tneighboring_rooms: {self.neighboring_rooms}\n\titems: {self.items}\n\tenemies: {self.enemies}"
+        return f'''
+                Room:
+                    name: {self.name}
+                    neighboring_rooms: {self.neighboring_rooms}
+                    items: {self.items}
+                    enemies: {self.enemies}
+                '''
 
     def __str__(self):
-        return f"Room:\n\tname: {self.name}\n\tneighboring_rooms: {self.neighboring_rooms}\n\titems: {self.items}\n\tenemies: {self.enemies}"
+        return f'''
+                Room:
+                    name: {self.name}
+                    neighboring_rooms: {self.neighboring_rooms}
+                    items: {self.items}
+                    enemies: {self.enemies}
+                '''

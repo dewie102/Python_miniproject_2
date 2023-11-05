@@ -14,6 +14,7 @@ def show_instructions():
     Commands:
     go [direction]
     get [item]
+    quests
     ''')
 
 # Instantiate the player
@@ -60,7 +61,7 @@ while True:
         #if the room contains an item, and the item is the one they want to get
         if player.location.items and move[1] in player.location.items: # don't think this will work
             #add the item to their inventory
-            player.inventory += [move[1]]
+            player.inventory.append({move[1]: player.location.items[move[1]]})
             #display a helpful message
             print(move[1] + ' got!')
             #delete the item from the room
@@ -70,17 +71,20 @@ while True:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
 
+    if move[0] == "quests":
+        pprint(player.quests)
+
 
     for quest in player.quests:
-        player.can_complete_quest(quest)
-        if quest.is_complete:
-            print(f"quest completed!\n{quest}")
-    """ ## Define how a player can win
-    if player.location.name == 'Garden' and 'key' in player.inventory and 'potion' in player.inventory:
+        player.can_complete_quest(player.quests.get(quest))
+        if player.quests.get(quest).is_complete:
+            print(f"quest completed!\n{player.quests.get(quest)}")
+    ## Define how a player can win
+    if player.location.name == 'Garden' and player.quests.get("End Game").is_complete:
         print('You escaped the house with the ultra rare key and magic potion... YOU WIN!')
         break
 
-    ## If a player enters a room with a monster
+    """ ## If a player enters a room with a monster
     if player.location.enemies and 'monster' in player.location.enemies:
         print('A monster has got you... GAME OVER!')
         break """

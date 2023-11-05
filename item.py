@@ -10,8 +10,20 @@ class Item:
 
 
     def __repr__(self):
-        return f"Item:\n\tname: {self.name}\n\tlocation: {self.location}\n\thidden: {self.hidden}"
+        return f'''
+                Item:
+                    name: {self.name}
+                    type: {self.type}
+                    location: {self.location}
+                    hidden: {self.hidden}
+                '''
 
 
     def __str__(self):
-        return f"Item:\n\tname: {self.name}\n\tlocation: {self.location}\n\thidden: {self.hidden}"
+        return f'''
+                Item:
+                    name: {self.name}
+                    type: {self.type}
+                    location: {self.location}
+                    hidden: {self.hidden}
+                '''

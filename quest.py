@@ -38,8 +38,24 @@ class Quest:
 
 
     def __repr__(self):
-        return f"Quest:\n\tname: {self.name}\n\tdescription: {self.description}\n\trequired: {self.required}\n\ttasks: {self.tasks}"
+        return f'''
+                Quest:
+                    name: {self.name}
+                    description: {self.description}
+                    required: {self.required}
+                    tasks: {self.tasks}
+                    is_complete: {self.is_complete}
+                    number_of_necessary_tasks: {self.number_of_necessary_tasks}
+                '''
 
 
     def __str__(self):
-        return f"Quest:\n\tname: {self.name}\n\tdescription: {self.description}\n\trequired: {self.required}\n\ttasks: {self.tasks}"
+        return f'''
+                Quest:
+                    name: {self.name}
+                    description: {self.description}
+                    required: {self.required}
+                    tasks: {self.tasks}
+                    is_complete: {self.is_complete}
+                    number_of_necessary_tasks: {self.number_of_necessary_tasks}
+                '''

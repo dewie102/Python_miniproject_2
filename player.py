@@ -22,6 +22,8 @@ class Player:
                 if self.can_complete_task(task):
                     task.complete = True
                     completed_tasks += 1
+            elif task.complete:
+                completed_tasks += 1
 
         if completed_tasks >= quest.number_of_necessary_tasks:
             quest.is_complete = True
@@ -32,9 +34,11 @@ class Player:
         match task.type:
             case TaskType.INVENTORY:
                 for item in task.needed_items:
-                    for key, value in item.items():
-                        if key in self.inventory and self.inventory[key] == value:
-                            task.complete = True
+                    item_type = list(item.keys())[0]
+                    for inventory_item in self.inventory:
+                        if item_type == list(inventory_item.keys())[0]:
+                            if list(item.values())[0].lower() == list(inventory_item.values())[0].name.lower():
+                                task.complete = True
 
 
     def show_status(self):
@@ -42,7 +46,11 @@ class Player:
         print('---------------------------')
         print('You are in the ' + self.location.name)
         #print the current inventory
-        print('Inventory : ' + str(self.inventory))
+        inv = []
+        for item in self.inventory:
+            inv.append(list(item.keys())[0])
+        print("Inventory : " + str(inv))
+        #print('Inventory : ' + str(self.inventory))
         #print an item if there is one
         if self.location.items:
             print('You see ' + str.join(", ", self.location.items.keys()))
@@ -50,8 +58,20 @@ class Player:
 
 
     def __repr__(self):
-        return f"Player:\n\tname: {self.name}\n\tlocation: {self.location}\n\tinventory: {self.inventory}"
+        return f'''
+                Player:
+                    name: {self.name}
+                    location: {self.location}
+                    inventory: {self.inventory}
+                    quests: {self.quests}
+                '''
 
 
     def __str__(self):
-        return f"Player:\n\tname: {self.name}\n\tlocation: {self.location}\n\tinventory: {self.inventory}"
+        return f'''
+                Player:
+                    name: {self.name}
+                    location: {self.location}
+                    inventory: {self.inventory}
+                    quests: {self.quests}
+                '''
