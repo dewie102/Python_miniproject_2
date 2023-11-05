@@ -2,7 +2,6 @@
 #!/usr/bin/env python3
 
 import json
-from typing import List
 from pprint import pprint
 
 from monster import Monster

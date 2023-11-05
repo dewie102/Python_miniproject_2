@@ -1,0 +1,38 @@
+{
+    "End Game": {
+      "name": "Complete the level",
+      "description": "You need to collect a key and potion then proceed to the garden to beat the game",
+      "required": true,
+      "number_of_necessary_tasks": -1,
+      "tasks": [
+        {
+          "name": "Collect key",
+          "description": "Find the key needed to proceed",
+          "required": true
+        },
+        {
+          "name": "Collect a potion",
+          "description": "Find the potion needed to proceed",
+          "required": true
+        }
+        ]
+    },
+    "Distract The Monster": {
+      "name": "Monster Tamer",
+      "description": "There is a monster in the house, you need to find a way to deal with it",
+      "required": false,
+      "number_of_necessary_tasks": 1,
+      "tasks": [
+        {
+          "name": "Collect a sword",
+          "description": "Find a sword to use against the monster",
+          "required": false
+        },
+        {
+          "name": "Collect a cookie",
+          "description": "Maybe the monster enjoys cookies",
+          "required": false
+        }
+        ]
+    }
+  }
