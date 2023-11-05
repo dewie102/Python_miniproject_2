@@ -10,7 +10,6 @@ from room import Room
 from quest import Quest
 from task import Task, TaskType
 
-
 def process_items(item_dict):
     """Takes a dictionary of items from JSON and creates the items
         and returns the list of items in that particular room"""
@@ -22,7 +21,7 @@ def process_items(item_dict):
             item_obj.name = item_prop[1].get("name", item_prop[0])
             item_obj.hidden = item_prop[1].get("hidden")
             item_obj.location = item_prop[1].get("location")
-            items.append({item_obj.name: item_obj})
+            items.append({item_obj.type: item_obj})
 
     return items
 
@@ -42,13 +41,57 @@ def process_enemy(enemy_dict):
     return enemies
 
 
+def process_tasks(task_list) -> list[Task]:
+    """Takes a list of tasks from JSON and creates the tasks
+        and returns the list objects for that particular quest"""
+    tasks = []
+    for task in task_list:
+        task_obj = Task()
+        task_obj.name = task.get("name")
+        task_obj.description = task.get("description")
+        task_obj.required = task.get("required")
+        needed_items = []
+        for item in task.get("needed_items", []):
+            needed_items.append(item)
+
+        task_obj.needed_items = needed_items
+
+        tasks.append(task_obj)
+
+    return tasks
+
+
+def load_quests(level_number: int) -> dict[str, Quest]:
+    """Basic method for loading the quests for the level"""
+    quests = {}
+
+    try:
+        with open(f"quests_{level_number}.json", "r", encoding="UTF-8") as quest_file:
+            data = json.load(quest_file)
+            for quest in data.items():
+                quest_obj = Quest()
+                quest_obj.name = quest[1].get("name")
+                quest_obj.description = quest[1].get("description")
+                quest_obj.required = quest[1].get("required")
+                quest_obj.number_of_necessary_tasks = quest[1].get("number_of_necessary_tasks")
+
+                tasks: list[Task] = process_tasks(quest[1].get("tasks", []))
+                quest_obj.tasks = tasks
+
+                quests.update({quest[0]: quest_obj})
+    except OSError as ex:
+        print(f"Something went wrong with opening the file:\n{ex}")
+
+    return quests
+
+
 def load_level(level_number: int) -> dict[str, Room]:
-    """Main function for testing"""
+    """Basic method for loading the level"""
     rooms = {}
 
     try:
-        with open(f"level_{level_number}.json", "r", encoding="UTF-8") as level:
-            data = json.load(level) # This is the full json as python object
+        with open(f"level_{level_number}.json", "r", encoding="UTF-8") as level_file:
+            data = json.load(level_file) # This is the full json as python object
             for room in data.items():
                 room_obj = Room()
                 room_obj.name = room[0]
