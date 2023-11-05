@@ -7,6 +7,8 @@ from pprint import pprint
 from monster import Monster
 from item import Item
 from room import Room
+from quest import Quest
+from task import Task, TaskType
 
 
 def process_items(item_dict):
@@ -16,7 +18,8 @@ def process_items(item_dict):
     for item in item_dict:
         item_obj = Item()
         for item_prop in item.items():
-            item_obj.name = item_prop[0]
+            item_obj.type = item_prop[0]
+            item_obj.name = item_prop[1].get("name", item_prop[0])
             item_obj.hidden = item_prop[1].get("hidden")
             item_obj.location = item_prop[1].get("location")
             items.append({item_obj.name: item_obj})

@@ -10,6 +10,9 @@ class Quest:
         self.required = False
         self.tasks: Task = []
         self.is_complete = False
+        # This determines how many tasks need to be completed to complete the quest
+        # -1 means all the tasks, or at least all the required tasks
+        self.number_of_necessary_tasks = -1
 
 
     def complete_quest(self):

@@ -8,12 +8,22 @@
         {
           "name": "Collect key",
           "description": "Find the key needed to proceed",
-          "required": true
+          "required": true,
+          "needed_items": [
+            {
+              "key": "ultra rare key"
+            }
+          ]
         },
         {
           "name": "Collect a potion",
           "description": "Find the potion needed to proceed",
-          "required": true
+          "required": true,
+          "needed_items": [
+            {
+              "potion": "magic potion"
+            }
+          ]
         }
         ]
     },
@@ -26,12 +36,22 @@
         {
           "name": "Collect a sword",
           "description": "Find a sword to use against the monster",
-          "required": false
+          "required": false,
+          "needed_items": [
+            {
+              "sword": "Bronze Sword"
+            }
+          ]
         },
         {
           "name": "Collect a cookie",
           "description": "Maybe the monster enjoys cookies",
-          "required": false
+          "required": false,
+          "needed_items": [
+            {
+              "cookie": "Cookie"
+            }
+          ]
         }
         ]
     }

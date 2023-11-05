@@ -7,11 +7,13 @@
     "items": [
       {
         "key": {
+          "name": "Ultra Rare Key",
           "hidden": false
         }
       },
       {
         "sword": {
+          "name": "Bronze Sword",
           "hidden": true,
           "location": "rug"
         }
@@ -38,7 +40,9 @@
     },
     "items": [
       {
-        "potion": {}
+        "potion": {
+          "name": "Magic Potion"
+        }
       }
     ]
   },
@@ -53,7 +57,9 @@
     },
     "items": [
       {
-        "cookie": {}
+        "cookie": {
+          "name": "Cookie"
+        }
       }
     ]
   }
