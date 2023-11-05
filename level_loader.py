@@ -8,7 +8,7 @@ from monster import Monster
 from item import Item
 from room import Room
 from quest import Quest
-from task import Task, TaskType
+from task import Task
 
 def process_items(item_dict):
     """Takes a dictionary of items from JSON and creates the items

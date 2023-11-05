@@ -1,5 +1,7 @@
 """Module to handle quests"""
 
+from textwrap import dedent
+
 from task import Task
 
 class Quest:
@@ -37,25 +39,35 @@ class Quest:
             self.number_of_necessary_tasks = required_tasks
 
 
+    def print_quest(self):
+        """Method to print out the quest nicely"""
+        return dedent(f'''
+        Quest:
+            name: {self.name}
+            description: {self.description}
+            Quest Complete: {self.is_complete}
+        ''')
+
+
     def __repr__(self):
         return f'''
-                Quest:
-                    name: {self.name}
-                    description: {self.description}
-                    required: {self.required}
-                    tasks: {self.tasks}
-                    is_complete: {self.is_complete}
-                    number_of_necessary_tasks: {self.number_of_necessary_tasks}
-                '''
+        Quest:
+            name: {self.name}
+            description: {self.description}
+            required: {self.required}
+            tasks: {self.tasks}
+            is_complete: {self.is_complete}
+            number_of_necessary_tasks: {self.number_of_necessary_tasks}
+        '''
 
 
     def __str__(self):
         return f'''
-                Quest:
-                    name: {self.name}
-                    description: {self.description}
-                    required: {self.required}
-                    tasks: {self.tasks}
-                    is_complete: {self.is_complete}
-                    number_of_necessary_tasks: {self.number_of_necessary_tasks}
-                '''
+        Quest:
+            name: {self.name}
+            description: {self.description}
+            required: {self.required}
+            tasks: {self.tasks}
+            is_complete: {self.is_complete}
+            number_of_necessary_tasks: {self.number_of_necessary_tasks}
+        '''

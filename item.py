@@ -11,19 +11,19 @@ class Item:
 
     def __repr__(self):
         return f'''
-                Item:
-                    name: {self.name}
-                    type: {self.type}
-                    location: {self.location}
-                    hidden: {self.hidden}
-                '''
+        Item:
+            name: {self.name}
+            type: {self.type}
+            location: {self.location}
+            hidden: {self.hidden}
+        '''
 
 
     def __str__(self):
         return f'''
-                Item:
-                    name: {self.name}
-                    type: {self.type}
-                    location: {self.location}
-                    hidden: {self.hidden}
-                '''
+        Item:
+            name: {self.name}
+            type: {self.type}
+            location: {self.location}
+            hidden: {self.hidden}
+        '''

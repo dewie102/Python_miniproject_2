@@ -12,18 +12,18 @@ class Room:
 
     def __repr__(self):
         return f'''
-                Room:
-                    name: {self.name}
-                    neighboring_rooms: {self.neighboring_rooms}
-                    items: {self.items}
-                    enemies: {self.enemies}
-                '''
+        Room:
+            name: {self.name}
+            neighboring_rooms: {self.neighboring_rooms}
+            items: {self.items}
+            enemies: {self.enemies}
+        '''
 
     def __str__(self):
         return f'''
-                Room:
-                    name: {self.name}
-                    neighboring_rooms: {self.neighboring_rooms}
-                    items: {self.items}
-                    enemies: {self.enemies}
-                '''
+        Room:
+            name: {self.name}
+            neighboring_rooms: {self.neighboring_rooms}
+            items: {self.items}
+            enemies: {self.enemies}
+        '''

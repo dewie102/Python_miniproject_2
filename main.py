@@ -72,19 +72,26 @@ while True:
             print('Can\'t get ' + move[1] + '!')
 
     if move[0] == "quests":
-        pprint(player.quests)
+        for quest in player.quests.items():
+            if not quest[1].is_complete:
+                print(quest[1].print_quest())
 
 
-    for quest in player.quests:
-        player.can_complete_quest(player.quests.get(quest))
-        if player.quests.get(quest).is_complete:
-            print(f"quest completed!\n{player.quests.get(quest)}")
+    for quest in player.quests.items():
+        player.can_complete_quest(quest[0], quest[1])
+        if quest[1].is_complete:
+            print(f"quest completed!\n{quest[1].print_quest()}")
+
     ## Define how a player can win
     if player.location.name == 'Garden' and player.quests.get("End Game").is_complete:
         print('You escaped the house with the ultra rare key and magic potion... YOU WIN!')
         break
 
-    """ ## If a player enters a room with a monster
+    ## If a player enters a room with a monster
     if player.location.enemies and 'monster' in player.location.enemies:
-        print('A monster has got you... GAME OVER!')
-        break """
+        if player.quests.get("Distract The Monster").is_complete:
+            print("You dealt with the monster and are free to roam")
+            del player.location.enemies["monster"]
+        else:
+            print('A monster has got you... GAME OVER!')
+            break

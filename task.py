@@ -21,21 +21,21 @@ class Task:
 
     def __repr__(self):
         return f'''
-                Task:
-                    name: {self.name}
-                    description: {self.description}
-                    required: {self.required}
-                    type: {self.type}
-                    complete: {self.complete}
-                '''
+            Task:
+                name: {self.name}
+                description: {self.description}
+                required: {self.required}
+                type: {self.type}
+                complete: {self.complete}
+            '''
 
 
     def __str__(self):
         return f'''
-                Task:
-                    name: {self.name}
-                    description: {self.description}
-                    required: {self.required}
-                    type: {self.type}
-                    complete: {self.complete}
-                '''
+            Task:
+                name: {self.name}
+                description: {self.description}
+                required: {self.required}
+                type: {self.type}
+                complete: {self.complete}
+            '''
