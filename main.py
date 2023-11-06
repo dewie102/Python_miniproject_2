@@ -12,6 +12,8 @@ def show_instructions():
     Commands:
     go [direction]
     get [item]
+    look [furniture]
+    inventory
     quests
     ''')
 
@@ -55,21 +57,30 @@ while True:
             print('You can\'t go that way!')
 
     #if they type 'get' first
-    if move[0] == 'get' :
+    elif move[0] == 'get' :
         #if the room contains an item, and the item is the one they want to get
-        if player.location.items and move[1] in player.location.items: # don't think this will work
-            #add the item to their inventory
-            player.inventory.append({move[1]: player.location.items[move[1]]})
-            #display a helpful message
-            print(move[1] + ' got!')
-            #delete the item from the room
-            del player.location.items[move[1]]
+        if player.location.items and move[1] in player.location.items:
+            # As long as the item isn't hidden, take it
+            if not player.location.items.get(move[1]).hidden:
+                #add the item to their inventory
+                player.inventory.append({move[1]: player.location.items[move[1]]})
+                #display a helpful message
+                print(move[1] + ' got!')
+                #delete the item from the room
+                del player.location.items[move[1]]
+            else:
+                print(f"And where would you like me to find a {move[1]}?")
         #otherwise, if the item isn't there to get
         else:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
 
-    if move[0] == "quests":
+    elif move[0] == "look":
+        if player.location.furniture:
+            player.location.look_at_furniture(move[1])
+    elif move[0] == "inventory":
+        player.display_inventory()
+    elif move[0] == "quests":
         for quest in player.quests.items():
             if not quest[1].is_complete:
                 print(quest[1].print_quest())

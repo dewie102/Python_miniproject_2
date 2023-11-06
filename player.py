@@ -48,17 +48,17 @@ class Player:
     def show_status(self):
         """print the player's current status"""
         print('---------------------------')
-        print('You are in the ' + self.location.name)
-        #print the current inventory
+        print(f'You are in the {self.location.name}.')
+        self.location.print_description()
+        print("---------------------------")
+
+
+    def display_inventory(self):
+        """Simple method to print player inventory"""
         inv = []
         for item in self.inventory:
             inv.append(list(item.keys())[0])
         print("Inventory : " + str(inv))
-        #print('Inventory : ' + str(self.inventory))
-        #print an item if there is one
-        if self.location.items:
-            print('You see ' + str.join(", ", self.location.items.keys()))
-        print("---------------------------")
 
 
     def __repr__(self):

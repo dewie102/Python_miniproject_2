@@ -19,11 +19,11 @@
         }
       }
     ],
-    "dialog": "You see an mostly empty hallway. There is 1 mirror, a little solid wood hutch and a rug",
+    "base_description": "You see an mostly empty hallway.",
     "furniture": {
-      "mirror": "a rusty bronze mirror",
-      "hutch": "a little solid wood hutch",
-      "rug": "a rug"
+      "mirror": ["a rusty bronze MIRROR", "You look at it but there is too much dust to see anything"],
+      "hutch": ["a little solid wood HUTCH", "You go to open it but it's locked shut"],
+      "rug": ["a RUG with an odd lump in it", "You look under the rug and find a sword"]
     }
   },
   "Kitchen": {

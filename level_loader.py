@@ -109,6 +109,9 @@ def load_level(level_number: int) -> dict[str, Room]:
                 for enemy in enemies:
                     room_obj.enemies.update(enemy)
 
+                room_obj.furniture = room[1].get("furniture", {})
+                room_obj.base_description = room[1].get("base_description", "")
+
                 rooms.update({room_obj.name: room_obj})
     except OSError as ex:
         print(f"Something went wrong with opening the file:\n{ex}")
