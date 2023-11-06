@@ -5,6 +5,7 @@ from item import Item
 from quest import Quest
 from room import Room
 
+
 class Player:
     """Class representing a Player"""
     def __init__(self):
@@ -12,10 +13,9 @@ class Player:
         self.location: Room = None
         self.inventory: list[Item] = []
         self.quests: dict[str, Quest] = {}
-        #self.completed_quests: list[Quest] = []
 
 
-    def can_complete_quest(self, quest_key: str, quest: Quest):
+    def can_complete_quest(self, quest: Quest):
         """Determines if the quest can be complete"""
         completed_tasks = 0
         for task in quest.tasks:
@@ -27,9 +27,6 @@ class Player:
 
         if completed_tasks >= quest.number_of_necessary_tasks:
             quest.is_complete = True
-            """ self.completed_quests.append({quest_key: quest})
-            self.quests.pop(quest_key) """
-
 
 
     def can_complete_task(self, task: Task):
@@ -40,10 +37,11 @@ class Player:
                     item_type = list(item.keys())[0]
                     for inventory_item in self.inventory:
                         if item_type == list(inventory_item.keys())[0]:
-                            if list(item.values())[0].lower() == list(inventory_item.values())[0].name.lower():
+                            if list(item.values())[0].lower() == \
+                                list(inventory_item.values())[0].name.lower():
                                 task.complete = True
                                 return True
-        
+
         return False
 
 

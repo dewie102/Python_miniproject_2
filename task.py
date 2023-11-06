@@ -6,6 +6,7 @@ from enum import Enum
 class TaskType(Enum):
     """This is to represent the type of tasks to figure out how to process complete"""
     INVENTORY = 0
+    ACTION = 1
 
 
 class Task:

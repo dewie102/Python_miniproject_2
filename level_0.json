@@ -18,7 +18,13 @@
           "location": "rug"
         }
       }
-    ]
+    ],
+    "dialog": "You see an mostly empty hallway. There is 1 mirror, a little solid wood hutch and a rug",
+    "furniture": {
+      "mirror": "a rusty bronze mirror",
+      "hutch": "a little solid wood hutch",
+      "rug": "a rug"
+    }
   },
   "Kitchen": {
     "direction": {

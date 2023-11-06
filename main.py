@@ -1,8 +1,6 @@
 """RPG Text Adventure Main module"""
 #!/usr/bin/env python3
 
-from pprint import pprint
-
 import level_loader
 from player import Player
 
@@ -43,7 +41,7 @@ while True:
         move = input('>')
 
     # split allows an items to have a space on them
-    # get golden key is returned ["get", "golden key"]          
+    # get golden key is returned ["get", "golden key"]
     move = move.lower().split(" ", 1)
 
     #if they type 'go' first
@@ -78,7 +76,7 @@ while True:
 
 
     for quest in player.quests.items():
-        player.can_complete_quest(quest[0], quest[1])
+        player.can_complete_quest(quest[1])
         if quest[1].is_complete:
             print(f"quest completed!\n{quest[1].print_quest()}")
 

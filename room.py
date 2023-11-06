@@ -3,12 +3,13 @@
 
 class Room:
     """Class representing a room"""
-
     def __init__(self):
         self.name = ""
         self.neighboring_rooms = {}
         self.items = {}
         self.enemies = {}
+        self.furniture = {}
+
 
     def __repr__(self):
         return f'''
@@ -18,6 +19,7 @@ class Room:
             items: {self.items}
             enemies: {self.enemies}
         '''
+
 
     def __str__(self):
         return f'''
