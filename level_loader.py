@@ -3,6 +3,7 @@
 
 import json
 from pprint import pprint
+from typing import List, Dict, TypedDict
 
 from monster import Monster
 from item import Item
@@ -10,12 +11,18 @@ from room import Room
 from quest import Quest
 from task import Task
 
-def process_items(item_dict):
+
+Item_Dict = TypedDict('Item', {"name": str, "hidden": bool, "location": str})
+Enemy_Dict = TypedDict('Enemy', {"type": str, "sublocation": str})
+Task_Dict = TypedDict("Task", {"name": str, "description": str, "required": bool, "needed_items": List[Dict[str, str]]})
+
+
+def process_items(item_list: List[Dict[str, Item_Dict]]) -> list[Dict[str, Item]]:
     """Takes a dictionary of items from JSON and creates the items
         and returns the list of items in that particular room"""
-    items = []
-    for item in item_dict:
-        item_obj = Item()
+    items: List[Dict[str, Item]] = []
+    for item in item_list:
+        item_obj: Item = Item()
         for item_prop in item.items():
             item_obj.type = item_prop[0]
             item_obj.name = item_prop[1].get("name", item_prop[0])
@@ -26,31 +33,31 @@ def process_items(item_dict):
     return items
 
 
-def process_enemy(enemy_dict):
+def process_enemy(enemy_list: List[Dict[str, Enemy_Dict]]) -> List[Dict[str, Monster]]:
     """Takes a room key, value tuple from JSON and creates the enemy
         and returns the list of enemies in that particular room"""
-    enemies = []
-    for enemy in enemy_dict:
+    enemies: List[Dict[str, Monster]] = []
+    for enemy in enemy_list:
         enemy_obj = Monster()
         for enemy_prop in enemy.items():
             enemy_obj.name = enemy_prop[0]
-            enemy_obj.location = enemy_prop[1].get("location")
+            enemy_obj.sublocation = enemy_prop[1].get("sublocation")
             enemy_obj.type = enemy_prop[1].get("type")
             enemies.append({enemy_obj.name: enemy_obj})
 
     return enemies
 
 
-def process_tasks(task_list) -> list[Task]:
+def process_tasks(task_list: List[Task_Dict]) -> list[Task]:
     """Takes a list of tasks from JSON and creates the tasks
         and returns the list objects for that particular quest"""
-    tasks = []
+    tasks: List[Task] = []
     for task in task_list:
-        task_obj = Task()
+        task_obj: Task = Task()
         task_obj.name = task.get("name")
         task_obj.description = task.get("description")
         task_obj.required = task.get("required")
-        needed_items = []
+        needed_items: List[Dict[str, str]] = []
         for item in task.get("needed_items", []):
             needed_items.append(item)
 
@@ -61,9 +68,9 @@ def process_tasks(task_list) -> list[Task]:
     return tasks
 
 
-def load_quests(level_number: int) -> dict[str, Quest]:
+def load_quests(level_number: int) -> Dict[str, Quest]:
     """Basic method for loading the quests for the level"""
-    quests = {}
+    quests: Dict[str, Quest] = {}
 
     try:
         with open(f"quests_{level_number}.json", "r", encoding="UTF-8") as quest_file:
@@ -87,9 +94,9 @@ def load_quests(level_number: int) -> dict[str, Quest]:
     return quests
 
 
-def load_level(level_number: int) -> dict[str, Room]:
+def load_level(level_number: int) -> Dict[str, Room]:
     """Basic method for loading the level"""
-    rooms = {}
+    rooms: Dict[str, Room] = {}
 
     try:
         with open(f"level_{level_number}.json", "r", encoding="UTF-8") as level_file:
@@ -100,7 +107,7 @@ def load_level(level_number: int) -> dict[str, Room]:
 
                 room_obj.neighboring_rooms = room[1].get("direction")
 
-                items = process_items(room[1].get("items", {}))
+                items = process_items(room[1].get("items", []))
                 enemies = process_enemy(room[1].get("enemy", {}))
 
                 for item in items:

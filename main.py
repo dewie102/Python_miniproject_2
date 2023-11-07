@@ -3,6 +3,8 @@
 
 import level_loader
 from player import Player
+from room import Room
+from quest import Quest
 
 def show_instructions():
     """print a main menu and the commands"""
@@ -17,21 +19,18 @@ def show_instructions():
     quests
     ''')
 
-# Instantiate the player
-player = Player()
-
 # Load the rooms and quests for level 0
 rooms = level_loader.load_level(0)
-player.quests = level_loader.load_quests(0)
 
-# start the player in the Hall
-player.location = rooms.get("Hall")
+# Instantiate the player
+player = Player(rooms.get("Hall", Room()))
+player.quests = level_loader.load_quests(0)
 
 show_instructions()
 
 #loop forever
 while True:
-
+    
     player.show_status()
 
     #get the player's next 'move'
@@ -49,9 +48,13 @@ while True:
     #if they type 'go' first
     if move[0] == 'go':
         #check that they are allowed wherever they want to go
-        if move[1] in player.location.neighboring_rooms:
-            #set the current room to the new room
-            player.location = rooms.get(player.location.neighboring_rooms[move[1]])
+        if player.location and move[1] in player.location.neighboring_rooms:
+            new_room: Room | None = rooms.get(move[1])
+            if new_room:
+                #set the current room to the new room
+                player.location = new_room
+            else:
+                print("Something went wrong picking that room")
         #there is no door (link) to the new room
         else:
             print('You can\'t go that way!')
@@ -61,7 +64,9 @@ while True:
         #if the room contains an item, and the item is the one they want to get
         if player.location.items and move[1] in player.location.items:
             # As long as the item isn't hidden, take it
-            if not player.location.items.get(move[1]).hidden:
+            item = player.location.items.get(move[1])
+
+            if item and not item.hidden:
                 #add the item to their inventory
                 player.inventory.append({move[1]: player.location.items[move[1]]})
                 #display a helpful message
@@ -92,13 +97,16 @@ while True:
             print(f"quest completed!\n{quest[1].print_quest()}")
 
     ## Define how a player can win
-    if player.location.name == 'Garden' and player.quests.get("End Game").is_complete:
-        print('You escaped the house with the ultra rare key and magic potion... YOU WIN!')
-        break
+    if player.location.name == 'Garden':
+        garden_quest: Quest | None = player.quests.get("End Game")
+        if garden_quest and garden_quest.is_complete:
+            print('You escaped the house with the ultra rare key and magic potion... YOU WIN!')
+            break
 
     ## If a player enters a room with a monster
     if player.location.enemies and 'monster' in player.location.enemies:
-        if player.quests.get("Distract The Monster").is_complete:
+        monster_quest: Quest | None = player.quests.get("Distract The Monster")
+        if monster_quest and monster_quest.is_complete:
             print("You dealt with the monster and are free to roam")
             del player.location.enemies["monster"]
         else:

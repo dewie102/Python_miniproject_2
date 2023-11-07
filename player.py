@@ -1,5 +1,6 @@
 """Module representing a Player object"""
 
+from typing import List
 from task import Task, TaskType
 from item import Item
 from quest import Quest
@@ -8,10 +9,10 @@ from room import Room
 
 class Player:
     """Class representing a Player"""
-    def __init__(self):
+    def __init__(self, location: Room):
         self.name = ""
-        self.location: Room = None
-        self.inventory: list[Item] = []
+        self.location: Room = location
+        self.inventory: List[dict[str, Item]] = []
         self.quests: dict[str, Quest] = {}
 
 
@@ -41,6 +42,8 @@ class Player:
                                 list(inventory_item.values())[0].name.lower():
                                 task.complete = True
                                 return True
+            case TaskType.ACTION:
+                print("Action")
 
         return False
 
@@ -55,7 +58,7 @@ class Player:
 
     def display_inventory(self):
         """Simple method to print player inventory"""
-        inv = []
+        inv: List[str] = []
         for item in self.inventory:
             inv.append(list(item.keys())[0])
         print("Inventory : " + str(inv))

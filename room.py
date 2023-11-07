@@ -1,15 +1,18 @@
 """Module to define a room object"""
 
+from typing import List
+from monster import Monster
+from item import Item
 
 class Room:
     """Class representing a room"""
     def __init__(self):
-        self.name = ""
-        self.neighboring_rooms = {}
-        self.items = {}
-        self.enemies = {}
-        self.furniture = {}
-        self.base_description = ""
+        self.name: str = ""
+        self.neighboring_rooms: dict[str, Room] = {}
+        self.items: dict[str, Item] = {}
+        self.enemies: dict[str, Monster] = {}
+        self.furniture: dict[str, List[str]] = {}
+        self.base_description: str = ""
 
 
     def print_description(self):
@@ -23,7 +26,7 @@ class Room:
             print(furniture_descriptions[:-2]) # Gets rid of the last ', '
         if self.items:
             print("You also see the following items : [", end="")
-            items = []
+            items: List[str] = []
             for item in self.items.items():
                 if not item[1].hidden:
                     items.append(item[0])
@@ -33,9 +36,9 @@ class Room:
 
     def look_at_furniture(self, furniture_key: str):
         """Method to print the look description/ dialog of furniture_key"""
-        furn_desc_list = self.furniture.get(furniture_key, [])
+        furn_desc_list: List[str] = self.furniture.get(furniture_key, [])
         if furn_desc_list:
-            print(self.furniture.get(furniture_key)[1])
+            print(furn_desc_list[1])
 
             for item in self.items.items():
                 if item[1].hidden and item[1].location == furniture_key:

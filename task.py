@@ -1,6 +1,7 @@
 """Module to handle tasks for quests"""
 
 from enum import Enum
+from typing import List
 
 
 class TaskType(Enum):
@@ -12,12 +13,12 @@ class TaskType(Enum):
 class Task:
     """This is a respresntation for Tasks"""
     def __init__(self):
-        self.name = ""
-        self.required = False
-        self.description = ""
-        self.complete = False
+        self.name: str = ""
+        self.required: bool = False
+        self.description: str  = ""
+        self.complete: bool = False
         self.type = TaskType.INVENTORY
-        self.needed_items = []
+        self.needed_items: List[dict[str, str]] = []
 
 
     def __repr__(self):

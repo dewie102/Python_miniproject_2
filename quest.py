@@ -1,6 +1,7 @@
 """Module to handle quests"""
 
 from textwrap import dedent
+from typing import List
 
 from task import Task
 
@@ -10,7 +11,7 @@ class Quest:
         self.name = ""
         self.description = ""
         self.required = False
-        self.tasks: Task = []
+        self.tasks: List[Task] = []
         self.is_complete = False
         # This determines how many tasks need to be completed to complete the quest
         # -1 means all the tasks, or at least all the required tasks

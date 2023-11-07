@@ -3,10 +3,10 @@
 class Item:
     """Class representing an item"""
     def __init__(self):
-        self.name = ""
-        self.type = ""
-        self.hidden = False
-        self.location = ""
+        self.name: str = ""
+        self.type: str = ""
+        self.hidden: bool = False
+        self.location: str = ""
 
 
     def __repr__(self):
